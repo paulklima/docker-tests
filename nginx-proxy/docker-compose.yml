@@ -7,16 +7,21 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+    networks:
+      - default
+      - nginx-proxy-network
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   whoami:
     image: jwilder/whoami
     container_name: whoami.localhost
+    networks:
+      - default
     environment:
       - VIRTUAL_HOST=whoami.localhost
 
 networks:
   default:
-    external:
-      name: nginx-proxy-net
+  nginx-proxy-network:
+    external: true

@@ -6,10 +6,10 @@ services:
     container_name: php-fpm-test-app
 
     volumes:
-      - ./html:/code
+      - ./volumes/html:/code
 
-    logging:
-      driver:
+    networks:
+      - default
 
   web:
     image: nginx
@@ -19,14 +19,17 @@ services:
       - php-app
 
     volumes:
-      - ./config/site.conf:/etc/nginx/conf.d/default.conf
-      - ./html:/code
+      - ./volumes/config/site.conf:/etc/nginx/conf.d/default.conf
+      - ./volumes/html:/code
       - ./volumes/log/nginx:/var/log/nginx/
 
     environment:
       - VIRTUAL_HOST=php-fpm-test.localhost
+    networks:
+      - default
+      - nginx-proxy-network
 
 networks:
   default:
-    external:
-      name: nginx-proxy-net
+  nginx-proxy-network:
+    external: true
