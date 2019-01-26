@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx-proxy:
-    image: jwilder/nginx-proxy
+    image: jwilder/nginx-proxy:alpine
     container_name: nginx-proxy
     restart: unless-stopped
     ports:
@@ -15,3 +15,8 @@ services:
     container_name: whoami.localhost
     environment:
       - VIRTUAL_HOST=whoami.localhost
+
+networks:
+  default:
+    external:
+      name: nginx-proxy-net
