@@ -6,16 +6,34 @@ services:
     container_name: nginx-proxy
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "127.0.0.1:80:80"
     networks:
       - default
       - nginx-proxy-network
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      - DEFAULT_HOST=allmark.localhost
+
+  allmark:
+    image: andreaskoch/allmark
+    container_name: nginx-allmark-startpage
+    restart: unless-stopped
+    depends_on:
+      - nginx-proxy
+    networks:
+      - default
+    volumes:
+      - ../README.md:/data/README.md:ro
+    environment:
+      - VIRTUAL_HOST=allmark.localhost
+      - VIRTUAL_PORT=33001
 
   whoami:
     image: jwilder/whoami
     container_name: whoami.localhost
+    depends_on:
+      - nginx-proxy
     networks:
       - default
     environment:
