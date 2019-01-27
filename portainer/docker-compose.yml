@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: unless-stopped
+#    ports:
+#      - 9000:9000
+#    expose:
+#      - 9000
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/data:/data
+
+    environment:
+      - VIRTUAL_HOST=portainer.localhost
+      - VIRTUAL_PORT=9000
+
+
+networks:
+  default:
+    external:
+      name: nginx-proxy-network
