@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  proxy:
+    image: traefik:alpine
+    container_name: traefik-proxy
+    restart: unless-stopped
+    command: --api --docker
+    ports:
+      - 80:80
+      - 8080:8080
+    networks:
+      - default
+      - proxy-network
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+
+  allmark:
+    image: andreaskoch/allmark
+    container_name: nginx-allmark-startpage
+    restart: unless-stopped
+    depends_on:
+      - proxy
+    networks:
+      - default
+    volumes:
+      - ../README.md:/data/README.md:ro
+    labels:
+      - traefik.frontend.rule=Host:localhost
+      - traefik.docker.network=proxy-network
+#      - traefik.frontend.auth.basic.users=info:{SHA}eoX0dku9ba8cNUXvu/DyeabcC+s=
+#      - traefik.port=33001
+
+networks:
+  default:
+  proxy-network:
+    external: true

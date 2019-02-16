@@ -23,13 +23,15 @@ services:
       - ./volumes/html:/code
       - ./volumes/log/nginx:/var/log/nginx/
 
-    environment:
-      - VIRTUAL_HOST=php-fpm-test.localhost
+    labels:
+      - traefik.frontend.rule=Host:php-fpm-test.localhost
+      - traefik.docker.network=proxy-network
+
     networks:
       - default
-      - nginx-proxy-network
+      - proxy-network
 
 networks:
   default:
-  nginx-proxy-network:
+  proxy-network:
     external: true

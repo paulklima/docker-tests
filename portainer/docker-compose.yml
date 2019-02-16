@@ -1,25 +1,24 @@
 version: '3'
 
 services:
+
+  # user: admin
+  # pass: asdfghjk
   portainer:
     image: portainer/portainer
     container_name: portainer
     restart: unless-stopped
-#    ports:
-#      - 9000:9000
-#    expose:
-#      - 9000
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./volumes/data:/data
 
-    environment:
-      - VIRTUAL_HOST=portainer.localhost
-      - VIRTUAL_PORT=9000
-
+    labels:
+      - traefik.frontend.rule=Host:portainer.localhost
+      - traefik.port=9000
+      - traefik.docker.network=proxy-network
 
 networks:
   default:
     external:
-      name: nginx-proxy-network
+      name: proxy-network
