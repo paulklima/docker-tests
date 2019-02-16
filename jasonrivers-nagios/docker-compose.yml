@@ -7,7 +7,6 @@ services:
     restart: unless-stopped
 
     volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./volumes/nagios/etc:/opt/nagios/etc/
       - ./volumes/nagios/var:/opt/nagios/var/
       - ./volumes/nagios/plugins:/opt/Custom-Nagios-Plugins

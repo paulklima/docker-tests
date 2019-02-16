@@ -6,7 +6,6 @@ installed under:
 
 ##### Installed:
 - [traefik-proxy](#2-traefik-proxy) - [[http://localhost:8080]](http://localhost:8080)
-- [~~nginx-proxy~~](#2-nginx-proxy)- [[http://whoami.localhost]](http://whoami.localhost)
 - [portainer](#2-portainer) - [[http://portainer.localhost]](http://portainer.localhost)
 - [php-fpm-test](#2-php-fpm-test) - [[http://php-fpm-test.localhost]](http://php-fpm-test.localhost) 
 
@@ -47,42 +46,6 @@ networks:
     external: true
 ```
 
-
-## ~~nginx-proxy~~
-**Not used @see traefik-proxy**
-
-The default proxy for all services. Test with [http://whoami.localhost](http://whoami.localhost)
-
-Use external network:
-```bash
-docker network create nginx-proxy-network
-```
-
-To use declare:
-```
-version: '3'
-
-services:
-  db:
-    [...]
-    
-    networks: 
-      - default
-      
-  nginx:
-    [...]
-    
-    environment:
-      - VIRTUAL_HOST=php-fpm-test.localhost
-    networks: 
-      - default
-      - nginx-proxy-network
-
-networks:
-  default:
-  nginx-proxy-network:
-    external: true
-```
 
 ## portainer
 
