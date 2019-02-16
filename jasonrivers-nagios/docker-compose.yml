@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  portainer:
+    image: jasonrivers/nagios:latest
+    container_name: jasonrivers-nagios4
+    restart: unless-stopped
+
+    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./volumes/nagios/etc:/opt/nagios/etc/
+      - ./volumes/nagios/var:/opt/nagios/var/
+      - ./volumes/nagios/plugins:/opt/Custom-Nagios-Plugins
+      - ./volumes/nagiosgraph/var:/opt/nagiosgraph/var
+      - ./volumes/nagiosgraph/etc:/opt/nagiosgraph/etc
+
+    labels:
+      - traefik.frontend.rule=Host:nagios.localhost
+      - traefik.port=80
+      - traefik.docker.network=proxy-network
+
+networks:
+  default:
+    external:
+      name: proxy-network
