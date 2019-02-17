@@ -5,10 +5,10 @@ installed under:
 `/opt/docker/docker-files`
 
 ##### Installed:
-- [traefik-proxy](#2-traefik-proxy) - [[http://localhost:8080]](http://localhost:8080)
-- [portainer](#2-portainer) - [[http://portainer.localhost]](http://portainer.localhost)
-- [php-fpm-test](#2-php-fpm-test) - [[http://php-fpm-test.localhost]](http://php-fpm-test.localhost) 
-
+- [traefik-proxy](#traefik-proxy) - [[http://localhost:8080](http://localhost:8080)]
+- [portainer](#portainer) - [[http://portainer.localhost](http://portainer.localhost)]
+- [php-fpm-test](#php-fpm-test) - [[http://php-fpm-test.localhost](http://php-fpm-test.localhost)] 
+- [jasonrivers-nagios](#jasonrivers-nagios) - [[http://nagios.localhost](http://nagios.localhost)]
 
 ## traefik-proxy
 
@@ -53,6 +53,13 @@ Link: [http://portainer.localhost](http://portainer.localhost)
  
  user: admin  
  pass: asdfghjk
+ 
+## jasonrivers-nagios
+
+Link: [http://nagios.localhost](http://nagios.localhost)
+
+ user: nagiosadmin
+ pass: nagios
 
 ## php-fpm-test
 
