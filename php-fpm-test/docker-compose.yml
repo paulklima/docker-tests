@@ -24,8 +24,9 @@ services:
       - ./volumes/log/nginx:/var/log/nginx/
 
     labels:
-      - traefik.frontend.rule=Host:php-fpm-test.localhost
-      - traefik.docker.network=proxy-network
+      - "traefik.frontend.rule=Host:php-fpm-test.localhost"
+      - "traefik.backend=php-app"
+      - "traefik.docker.network=proxy-network"
 
     networks:
       - default
