@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  web:
+    image: "xwiki:stable-postgres"
+    restart: unless-stopped
+    environment:
+      - DB_USER=xwiki
+      - DB_PASSWORD=xwiki
+      - DB_DATABASE=xwiki
+      - DB_HOST=db
+    networks:
+      - proxy-network
+      - default
+    volumes:
+      - ./volumes/xwiki-data:/usr/local/xwiki
+    links:
+      - db
+    depends_on:
+      - db
+    labels:
+      - "traefik.frontend.rule=Host:xwiki.localhost"
+      - "traefik.backend=db"
+      - "traefik.docker.network=proxy-network"
+  db:
+    image: "postgres:9.5"
+    volumes:
+      - ./volumes/postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_ROOT_PASSWORD=root
+      - POSTGRES_USER=xwiki
+      - POSTGRES_PASSWORD=xwiki
+      - POSTGRES_DB=xwiki
+    networks:
+      - default
+
+networks:
+  default:
+  proxy-network:
+    external: true

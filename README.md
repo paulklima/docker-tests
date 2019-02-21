@@ -10,7 +10,7 @@ installed under:
 - [php-fpm-test](##php-fpm-test) - [[http://php-fpm-test.localhost](http://php-fpm-test.localhost)] 
 - [jasonrivers-nagios](##jasonrivers-nagios) - [[http://nagios.localhost](http://nagios.localhost)]
 - [dokuwiki](##dokuwiki) - [[http://wiki.localhost](http://wiki.localhosts)]
-
+- [dokuwiki](##xwiki) - [[http://xwiki.localhost](http://xwiki.localhosts)]
 
 ## traefik-proxy
 
@@ -74,3 +74,11 @@ Link [https://wiki.localhost](http://wiki.localhost)
 
  user: admin  
  pass: admin
+ 
+##  xwiki
+
+Link [https://xwiki.localhost](http://xwiki.localhost)
+
+ set on install:  
+ user: paulklima  
+ pass: test
