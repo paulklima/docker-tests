@@ -5,10 +5,12 @@ installed under:
 `/opt/docker/docker-files`
 
 ##### Installed:
-- [traefik-proxy](#traefik-proxy) - [[http://localhost:8080](http://localhost:8080)]
-- [portainer](#portainer) - [[http://portainer.localhost](http://portainer.localhost)]
-- [php-fpm-test](#php-fpm-test) - [[http://php-fpm-test.localhost](http://php-fpm-test.localhost)] 
-- [jasonrivers-nagios](#jasonrivers-nagios) - [[http://nagios.localhost](http://nagios.localhost)]
+- [traefik-proxy](##traefik-proxy) - [[http://localhost:8080](http://localhost:8080)]
+- [portainer](##portainer) - [[http://portainer.localhost](http://portainer.localhost)]
+- [php-fpm-test](##php-fpm-test) - [[http://php-fpm-test.localhost](http://php-fpm-test.localhost)] 
+- [jasonrivers-nagios](##jasonrivers-nagios) - [[http://nagios.localhost](http://nagios.localhost)]
+- [dokuwiki](##dokuwiki) - [[http://wiki.localhost](http://wiki.localhosts)]
+
 
 ## traefik-proxy
 
@@ -58,7 +60,7 @@ Link: [http://portainer.localhost](http://portainer.localhost)
 
 Link: [http://nagios.localhost](http://nagios.localhost)
 
- user: nagiosadmin
+ user: nagiosadmin  
  pass: nagios
 
 ## php-fpm-test
@@ -66,3 +68,9 @@ Link: [http://nagios.localhost](http://nagios.localhost)
 Testing the setup for php-fpm and nginx. \
 Link: [http://php-fpm-test.localhost](http://php-fpm-test.localhost)            
 
+## dokuwiki
+
+Link [https://wiki.localhost](http://wiki.localhost)
+
+ user: admin  
+ pass: admin
