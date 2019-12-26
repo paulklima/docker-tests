@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  graylog-mongo:
+    image: mongodb
+    container_name:
+
+    networks:
+      - default
+
+  graylog:
+    image:
+
+
+networks:
+  default:
+  proxy-network:
+    external: true

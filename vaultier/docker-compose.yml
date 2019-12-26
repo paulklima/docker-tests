@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  vaultier:
+    image: rclick/vaultier
+    restart: unless-stopped
+
+    environment:
+      - VAULTIER_DOMAIN=vaultier.localhost
+
+    labels:
+      - traefik.frontend.rule=Host:vaultier.localhost
+      - traefik.port=80
+      - traefik.docker.network=proxy-network
+
+networks:
+  default:
+    external:
+      name: proxy-network

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    image: "passbolt/passbolt:latest" #latest-pro
+    restart: unless-stopped
+    environment:
+      - DATASOURCES_DEFAULT_HOST=db
+      - DATASOURCES_DEFAULT_PASSWORD=passbolt
+      - DATASOURCES_DEFAULT_USERNAME=passbolt
+      - DATASOURCES_DEFAULT_DATABASE=passbolt
+      - APP_FULL_BASE_URL=https://passbolt.localhost
+    networks:
+      - proxy-network
+      - db-net
+    depends_on:
+      - db
+    labels:
+      - "traefik.frontend.rule=Host:passbolt.localhost"
+      - "traefik.backend=db"
+      - "traefik.docker.network=proxy-network"
+  db:
+    image: mysql:5 #"mariadb"
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=passbolt
+      - MYSQL_USER=passbolt
+      - MYSQL_PASSWORD=passbolt
+    networks:
+      - db-net
+
+networks:
+  db-net:
+  proxy-network:
+    external: true
